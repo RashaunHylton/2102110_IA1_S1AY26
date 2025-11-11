@@ -1,7 +1,93 @@
 :root{
-  --bg:#0f1724;
-  --accent:#3ddc97;
-  --ff:'Segoe UI', sans-serif;
+  /* CSS variables for consistent color scheme */
+  --bg: #f7f7fa;
+  --card: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6b6b72;
+  --accent: #0066cc;
+  --radius: 12px;
+  --gap: 1.25rem;
+  --max-width: 1100px;
+  --root-font: 16px;
 }
-body{font-family:var(--ff);background:var(--bg);color:#fff;}
-img{border-radius:10px;width:200px;}
+
+/* Global reset and base styles */
+*{box-sizing: border-box}
+html{font-size:var(--root-font)}
+body{
+  margin:0;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.5;
+}
+.container{
+  width:90%;
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:var(--gap) 0;
+}
+
+/* Header */
+.site-header{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.06);position:sticky;top:0;z-index:10}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.5rem 0}
+.logo img{height:44px;width:auto}
+.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1rem}
+.main-nav a{text-decoration:none;color:var(--text);padding:0.4rem 0.6rem;border-radius:8px}
+.main-nav a:hover, .main-nav a:focus{background:rgba(0,0,0,0.04)} /* pseudo-class usage */
+.cta{background:var(--accent);color:white;padding:0.5rem 0.8rem;border-radius:8px;text-decoration:none}
+.cta:hover{opacity:0.9}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr;gap:var(--gap);align-items:center;padding:2rem 0}
+.hero-figure{margin:0}
+.profile-photo{width:180px;height:180px;object-fit:cover;border-radius:50%;border:6px solid var(--card);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+.hero-copy .lead{color:var(--muted)}
+.btn{display:inline-block;padding:0.6rem 1rem;border-radius:10px;background:var(--card);border:1px solid rgba(0,0,0,0.06);text-decoration:none}
+.link-external{margin-left:1rem}
+
+/* Sections */
+section{background:transparent;padding:1rem 0;margin-bottom:0.5rem}
+article{background:var(--card);padding:1rem;border-radius:var(--radius);border:1px solid rgba(0,0,0,0.04);margin-bottom:1rem}
+
+/* Cards and table */
+.cards{display:flex;flex-wrap:wrap;gap:1rem}
+.card{flex:1 1 200px;padding:1rem;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(248,248,250,0.95));box-shadow:0 4px 10px rgba(0,0,0,0.03)}
+table{width:100%;border-collapse:collapse}
+thead th{background:rgba(0,0,0,0.04);text-align:left;padding:0.6rem}
+tbody td{padding:0.6rem;border-top:1px solid rgba(0,0,0,0.04)}
+
+/* Footer */
+.site-footer{padding:1.25rem 0;background:var(--card);margin-top:2rem}
+.site-footer a{text-decoration:none}
+
+/* Responsive design: min 600px (mobile styles) and min 950px (desktop) */
+@media (min-width:600px){
+  .hero{grid-template-columns:200px 1fr;align-items:center}
+  .profile-photo{width:200px;height:200px}
+}
+
+@media (min-width:950px){
+  .hero{grid-template-columns:260px 1fr;gap:2rem}
+  .main-nav ul{gap:1.25rem}
+  .container{width:92%}
+  /* Use CSS Grid for main layout on desktop */
+  main{display:grid;grid-template-columns:1fr 320px;gap:2rem}
+  main > section{grid-column:1}
+  aside{grid-column:2}
+}
+
+/* Accessibility focus state */
+a:focus{outline:3px solid rgba(0,102,204,0.18);outline-offset:3px}
+
+/* Simple transition/animation (Q6) */
+.btn, .card, .main-nav a{transition:transform 220ms ease, box-shadow 220ms ease}
+.btn:hover{transform:translateY(-3px)}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.08)}
+
+/* Utility classes */
+.text-center{text-align:center}
+.hidden{display:none}
+
+/* Ensure images are responsive */
+img{max-width:100%;height:auto}
